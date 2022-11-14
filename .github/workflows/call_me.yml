@@ -13,7 +13,7 @@ on:
 
 jobs:
   repo_list_dir:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted] 
     steps:
       - name: checkout_repo
         uses: actions/checkout@v3
@@ -23,7 +23,7 @@ jobs:
           ls -la
 
   favorite_superhero_show_1_1:
-    runs-on: ubuntu-latest
+    runs-on:  [self-hosted] 
     environment: Manual_1
     steps:
       - name: checkout_repo
@@ -37,7 +37,7 @@ jobs:
     needs: repo_list_dir
 
   favorite_superhero_show_1_2:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted] 
     environment: Manual_1
     steps:
       - name: checkout_repo
@@ -51,7 +51,7 @@ jobs:
     needs: favorite_superhero_show_1_1
 
   favorite_superhero_show_2_1:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted] 
     environment: Manual_2
     steps:
       - name: checkout_repo
@@ -65,7 +65,7 @@ jobs:
     needs: repo_list_dir
 
   favorite_superhero_show_2_2:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted] 
     environment: Manual_2
     steps:
       - name: checkout_repo
