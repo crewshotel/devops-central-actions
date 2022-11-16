@@ -2,7 +2,7 @@
 name: get-node-eks-clu-01
 
 on:
-  workflow-call:
+  workflow_call:
     inputs:
       favorite-superhero:
         required: true
