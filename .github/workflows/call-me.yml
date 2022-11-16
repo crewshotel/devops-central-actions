@@ -2,7 +2,7 @@
 name: call-me
 
 on:
-  workflow-call:
+  workflow_call:
     inputs:
       favorite-superhero:
         required: true
