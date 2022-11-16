@@ -1,0 +1,79 @@
+
+name: get-node-eks-clu-01
+
+on:
+  workflow-call:
+    inputs:
+      favorite-superhero:
+        required: true
+        type: string
+      second-favorite-superhero:
+        required: true
+        type: string
+
+jobs:
+  repo-list-dir:
+    runs-on: [self-hosted] 
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v3
+    
+      - name: list directory
+        run: |
+          ls -la
+
+  favorite-superhero-show-1-1:
+    runs-on:  [self-hosted] 
+    environment: Manual-1
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v3
+    
+      - name: show favorite superhero
+        run: |
+          echo "This is my favorite Superhero ... ${{ inputs.favorite-superhero }}"
+          echo " "
+          echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
+    needs: repo-list-dir
+
+  favorite-superhero-show-1-2:
+    runs-on: [self-hosted] 
+    environment: Manual-1
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v3
+    
+      - name: show favorite superhero
+        run: |
+          echo "This is my favorite Superhero ... ${{ inputs.favorite-superhero }}"
+          echo " "
+          echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
+    needs: favorite-superhero-show-1-1
+
+  favorite-superhero-show-2-1:
+    runs-on: [self-hosted] 
+    environment: Manual-2
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v3
+    
+      - name: show favorite superhero
+        run: |
+          echo "This is my favorite Superhero ... ${{ inputs.favorite-superhero }}"
+          echo " "
+          echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
+    needs: repo-list-dir
+
+  favorite-superhero-show-2-2:
+    runs-on: [self-hosted] 
+    environment: Manual-2
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v3
+    
+      - name: show favorite superhero
+        run: |
+          echo "This is my favorite Superhero ... ${{ inputs.favorite-superhero }}"
+          echo " "
+          echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
+    needs: favorite-superhero-show-2-1
