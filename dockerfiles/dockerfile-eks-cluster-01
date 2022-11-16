@@ -1,0 +1,31 @@
+
+# base image
+FROM amazon/aws-cli:latest
+
+ARG AWSID
+ARG AWSSECRET
+ARG AWSREGION
+ARG AWSEKSCLUSTERNAME
+
+# update the base image
+RUN yum update -y && yum install bind-utils -y && yum install jq -y && yum install git -y && yum install tar -y
+
+# install kubectl
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+RUN chmod +x ./kubectl
+RUN mv ./kubectl /usr/local/bin/kubectl
+
+# install helm
+RUN curl  -LO https://get.helm.sh/helm-v3.10.1-linux-amd64.tar.gz
+RUN tar -xvf helm-v3.10.1-linux-amd64.tar.gz
+RUN mv linux-amd64/helm /usr/local/bin/helm
+
+# establish aws-cli credentials
+RUN aws configure set aws_access_key_id ${AWSID}
+RUN aws configure set aws_secret_access_key ${AWSSECRET}
+
+# update kubeconfig - ekscluster-01
+RUN aws eks --region ${AWSREGION} update-kubeconfig --name ${AWSEKSCLUSTERNAME}
+
+# set the entrypoint to be bash
+ENTRYPOINT ["/bin/bash"]

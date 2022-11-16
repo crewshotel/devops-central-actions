@@ -1,79 +1,46 @@
 
-name: get-node-eks-clu-01
+name: get-eks-nodes
 
 on:
   workflow_call:
     inputs:
-      favorite-superhero:
+      aws-region:
         required: true
         type: string
-      second-favorite-superhero:
+      aws-subscription:
+        required: true
+        type: string
+      cluster-name:
+        required: true
+        type: string
+      iam-identity:
         required: true
         type: string
 
 jobs:
-  repo-list-dir:
+  get-docker-image:
     runs-on: [self-hosted] 
     steps:
-      - name: checkout-repo
+      - name: checkout-repo-local
         uses: actions/checkout@v3
-    
-      - name: list directory
-        run: |
-          ls -la
-
-  favorite-superhero-show-1-1:
-    runs-on:  [self-hosted] 
-    environment: Manual-1
-    steps:
-      - name: checkout-repo
+      - name: checkout-devops-central-actions
         uses: actions/checkout@v3
-    
-      - name: show favorite superhero
+        with:
+          repository: crewshotel/devops-central-actions
+          token: ${{ secrets.ACTIONS-PIPELINE }}
+          path: devops-central-actions
+      - name: list-folder-contents
         run: |
-          echo "This is my favorite Superhero ... ${{ inputs.favorite-superhero }}"
-          echo " "
-          echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
-    needs: repo-list-dir
-
-  favorite-superhero-show-1-2:
-    runs-on: [self-hosted] 
-    environment: Manual-1
-    steps:
-      - name: checkout-repo
-        uses: actions/checkout@v3
-    
-      - name: show favorite superhero
+          ls -la ./devops-central-actions
+      - name: set-aws-credentials
         run: |
-          echo "This is my favorite Superhero ... ${{ inputs.favorite-superhero }}"
-          echo " "
-          echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
-    needs: favorite-superhero-show-1-1
-
-  favorite-superhero-show-2-1:
-    runs-on: [self-hosted] 
-    environment: Manual-2
-    steps:
-      - name: checkout-repo
-        uses: actions/checkout@v3
-    
-      - name: show favorite superhero
+          if: ${{ inputs.iam-identity }} == 'eks_mgmt'
+          chmod +x ./devops-central-actions/scripts/aws/config/set-id-key-eks_mgmt.sh
+          ./devops-central-actions/scripts/aws/config/set-id-key-eks_mgmt.sh ${{ secrets.AWS_ID_EKS_MGMT }} ${{ secrets.AWS_KEY_EKS_MGMT }}
+      - name: docker-pull
         run: |
-          echo "This is my favorite Superhero ... ${{ inputs.favorite-superhero }}"
-          echo " "
-          echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
-    needs: repo-list-dir
-
-  favorite-superhero-show-2-2:
-    runs-on: [self-hosted] 
-    environment: Manual-2
-    steps:
-      - name: checkout-repo
-        uses: actions/checkout@v3
-    
-      - name: show favorite superhero
-        run: |
-          echo "This is my favorite Superhero ... ${{ inputs.favorite-superhero }}"
-          echo " "
-          echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
-    needs: favorite-superhero-show-2-1
+           chmod +x ./devops-central-actions/scripts/aws/ecr/admin-eks-cluster.sh
+           ./devops-central-actions/scripts/aws/ecr/admin-eks-cluster.sh ${{ inputs.aws-region}} ${{ inputs.aws-subscription }} ${{ inputs.cluster-name }}
+        
+        
+ 
