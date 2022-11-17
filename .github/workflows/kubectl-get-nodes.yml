@@ -35,11 +35,11 @@ jobs:
       - name: set-aws-credentials
         run: |
           if: ${{ inputs.iam-identity }} == 'eks_mgmt'
-          chmod +x ./devops-central-actions/scripts/aws/config/set-id-key-eks_mgmt.sh
-          ./devops-central-actions/scripts/aws/config/set-id-key-eks_mgmt.sh ${{ secrets.AWS_ID_EKS_MGMT }} ${{ secrets.AWS_KEY_EKS_MGMT }}
+          chmod +x /home/ec2-user/actions-runner/_work/devops-test-01/devops-test-01/devops-central-actions/scripts/aws/config/set-id-key-eks_mgmt.sh
+          /home/ec2-user/actions-runner/_work/devops-test-01/devops-test-01/devops-central-actions/scripts/aws/config/set-id-key-eks_mgmt.sh ${{ secrets.AWS_ID_EKS_MGMT }} ${{ secrets.AWS_KEY_EKS_MGMT }}
         shell: bash
       - name: docker-pull
         run: |
-           chmod +x ./devops-central-actions/scripts/aws/docker/admin-eks-cluster.sh
-           ./devops-central-actions/scripts/aws/docker/admin-eks-cluster.sh ${{ inputs.aws-region}} ${{ inputs.aws-subscription }} ${{ inputs.cluster-name }}
+           chmod +x /home/ec2-user/actions-runner/_work/devops-test-01/devops-test-01/devops-central-actions/scripts/aws/docker/admin-eks-cluster.sh
+           /home/ec2-user/actions-runner/_work/devops-test-01/devops-test-01/devops-central-actions/scripts/aws/docker/admin-eks-cluster.sh ${{ inputs.aws-region}} ${{ inputs.aws-subscription }} ${{ inputs.cluster-name }}
         shell: bash
