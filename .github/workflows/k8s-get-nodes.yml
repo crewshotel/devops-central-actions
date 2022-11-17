@@ -58,4 +58,5 @@ jobs:
         run: |
           chmod +x ./devops-central-actions/scripts/aws/docker/qry-k8s-cluster-nodes.sh
           ./devops-central-actions/scripts/aws/docker/qry-k8s-cluster-nodes.sh ${{ inputs.aws-subscription }} ${{ inputs.aws-region}} ${{ inputs.cluster-name }}
+    needs: pull-image
                
