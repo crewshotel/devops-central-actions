@@ -10,7 +10,7 @@ DOCKER_REGISTRY=${DOCKERSUB}.dkr.ecr.${REGION}.amazonaws.com
 DOCKER_IMAGE_FULL=${DOCKER_REGISTRY}/admin-${CLUSTER}:latest
 
 # start docker image
-docker run -d -ti --entrypoint /bin/bash ${DOCKER_IMAGE_FULL}
+docker run -d -ti --name ${CLUSTER} --entrypoint /bin/bash ${DOCKER_IMAGE_FULL}
 
 # list docker images
-docker image ls -a
+docker ps -a
