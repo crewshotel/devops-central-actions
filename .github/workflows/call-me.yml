@@ -77,3 +77,9 @@ jobs:
           echo " "
           echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
     needs: favorite-superhero-show-2-1
+
+  call-me-2:
+    uses: crewshotel/devops-central-actions/.github/workflows/call-me2.yml@main
+    with:
+      favorite-superhero: ${{ inputs.favorite-superhero }}
+      second-favorite-superhero: ${{ inputs.second-favorite-superhero }}
