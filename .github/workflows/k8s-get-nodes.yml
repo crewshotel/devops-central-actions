@@ -47,7 +47,7 @@ jobs:
           ./devops-central-actions/scripts/aws/docker/pull-admin-eks-cluster.sh ${{ inputs.aws-subscription }} ${{ inputs.aws-region}} ${{ inputs.cluster-name }}
   qry-k8s-nodes:
     runs-on [self-hosted, maint-only-01]
-      steps:
+    steps:
       - name: output_image_starting
         shell: bash
         run: |
@@ -58,5 +58,4 @@ jobs:
         run: |
           chmod +x ./devops-central-actions/scripts/aws/docker/qry-k8s-cluster-nodes.sh
           ./devops-central-actions/scripts/aws/docker/qry-k8s-cluster-nodes.sh ${{ inputs.aws-subscription }} ${{ inputs.aws-region}} ${{ inputs.cluster-name }}
-           
-      
+               
