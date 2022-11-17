@@ -43,6 +43,6 @@ jobs:
       - name: docker-pull
         shell: bash
         run: |
-          chmod +x ./devops-central-actions/scripts/aws/docker/admin-eks-cluster.sh
+          chmod +x ./devops-central-actions/scripts/aws/docker/pull-admin-eks-cluster.sh
           echo "sub - region - cluster - ${{ inputs.aws-subscription }} ${{ inputs.aws-region}} ${{ inputs.cluster-name }}"
-          ./devops-central-actions/scripts/aws/docker/admin-eks-cluster.sh ${{ inputs.aws-subscription }} ${{ inputs.aws-region}} ${{ inputs.cluster-name }}
+          ./devops-central-actions/scripts/aws/docker/pull-admin-eks-cluster.sh ${{ inputs.aws-subscription }} ${{ inputs.aws-region}} ${{ inputs.cluster-name }}
