@@ -1,5 +1,5 @@
 
-name: kubectl-g-n
+name: k8s-get-nodes
 
 on:
   workflow_call:
