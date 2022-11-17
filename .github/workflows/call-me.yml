@@ -79,7 +79,7 @@ jobs:
     needs: favorite-superhero-show-2-1
 
   call-me-2:
-    uses: crewshotel/devops-central-actions/.github/workflows/call-me2.yml@main
+    uses: crewshotel/devops-central-actions/.github/workflows/call-me-2.yml@main
     with:
       favorite-superhero: ${{ inputs.favorite-superhero }}
       second-favorite-superhero: ${{ inputs.second-favorite-superhero }}
