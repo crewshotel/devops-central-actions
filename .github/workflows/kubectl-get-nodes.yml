@@ -34,7 +34,7 @@ jobs:
           ls -la ./devops-central-actions
       - name: set-aws-credentials
         shell: bash
-        if: "${{ inputs.iam-identity == 'eks_mgmt' }}"
+        if: ${{ inputs.iam-identity }} == 'eks_mgmt'
         run: |
             chmod +x ./devops-central-actions/scripts/aws/config/set-id-key-eks_mgmt.sh
             ./devops-central-actions/scripts/aws/config/set-id-key-eks_mgmt.sh ${{ secrets.AWS_ID_EKS_MGMT }} ${{ secrets.AWS_KEY_EKS_MGMT }}
