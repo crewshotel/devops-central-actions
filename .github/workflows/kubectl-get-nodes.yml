@@ -16,6 +16,13 @@ on:
       iam-identity:
         required: true
         type: string
+    secrets:
+      ACTIONS-PIPELINE:
+        required: true
+      AWS_ID_EKS_MGMT:
+        required: true
+      AWS_KEY_EKS_MGMT:
+        required: true
 
 jobs:
   d-pull-i-1:
