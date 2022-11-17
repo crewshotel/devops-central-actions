@@ -47,7 +47,7 @@ jobs:
           echo "This is my favorite Superhero ... ${{ inputs.favorite-superhero }}"
           echo " "
           echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
-    needs: favorite-superhero-show-1-1
+    needs: fav-super-1-1
 
   fav-super-2-1:
     runs-on: [self-hosted] 
@@ -74,11 +74,10 @@ jobs:
           echo "This is my favorite Superhero ... ${{ inputs.favorite-superhero }}"
           echo " "
           echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
-    needs: favorite-superhero-show-2-1
-
+    needs: fav-super-2-1
   call-me-2:
     uses: crewshotel/devops-central-actions/.github/workflows/call-me-2.yml@main
     with:
       favorite-superhero: ${{ inputs.favorite-superhero }}
       second-favorite-superhero: ${{ inputs.second-favorite-superhero }}
-    needs: favorite-superhero-show-2-2
+    needs: fav-super-2-2

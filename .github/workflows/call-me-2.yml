@@ -22,7 +22,7 @@ jobs:
         run: |
           ls -la
 
-  favorite-superhero-show-3-1:
+  fav-super-3-1:
     runs-on:  [self-hosted] 
     environment: Manual-3-1
     steps:
@@ -36,7 +36,7 @@ jobs:
           echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
     needs: repo-list-dir
 
-  favorite-superhero-show-3-2:
+  fav-super-3-2:
     runs-on: [self-hosted] 
     steps:
       - name: checkout-repo
@@ -47,9 +47,9 @@ jobs:
           echo "This is my favorite Superhero ... ${{ inputs.favorite-superhero }}"
           echo " "
           echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
-    needs: favorite-superhero-show-3-1
+    needs: fav-super-3-1
 
-  favorite-superhero-show-4-1:
+  fav-super-4-1:
     runs-on: [self-hosted] 
     environment: Manual-4-1
     steps:
@@ -63,7 +63,7 @@ jobs:
           echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
     needs: repo-list-dir
 
-  favorite-superhero-show-4-2:
+  fav-super-4-2:
     runs-on: [self-hosted] 
     steps:
       - name: checkout-repo
@@ -74,4 +74,4 @@ jobs:
           echo "This is my favorite Superhero ... ${{ inputs.favorite-superhero }}"
           echo " "
           echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
-    needs: favorite-superhero-show-4-1
+    needs: fav-super-4-1
