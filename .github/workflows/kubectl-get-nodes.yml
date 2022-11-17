@@ -1,5 +1,5 @@
 
-name: get-eks-nodes
+name: kubectl-get-nodes
 
 on:
   workflow_call:
