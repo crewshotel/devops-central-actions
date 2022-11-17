@@ -45,7 +45,7 @@ jobs:
         run: |
           chmod +x ./devops-central-actions/scripts/aws/docker/pull-admin-eks-cluster.sh
           ./devops-central-actions/scripts/aws/docker/pull-admin-eks-cluster.sh ${{ inputs.aws-subscription }} ${{ inputs.aws-region}} ${{ inputs.cluster-name }}
-  list-k8s-nodes:
+  qry-k8s-nodes:
     runs-on [self-hosted, maint-only-01]
       steps:
       - name: output_image_starting
@@ -53,10 +53,10 @@ jobs:
         run: |
           echo "----- docker image starting -----"
           echo "${{ inputs.aws-subscription }}.dkr.ecr.${{ inputs.aws-region }}.amazonaws.com/admin-${{ inputs.cluster-name }}:latest"
-      - name: start-k8s-admin-image
+      - name: qry-k8s-cluster-nodes
         shell: bash
         run: |
-          chmod +x ./devops-central-actions/scripts/aws/docker/get-k8s-node.sh
-          ./devops-central-actions/scripts/aws/docker/get-k8s-node.sh ${{ inputs.aws-subscription }} ${{ inputs.aws-region}} ${{ inputs.cluster-name }}
+          chmod +x ./devops-central-actions/scripts/aws/docker/qry-k8s-cluster-nodes.sh
+          ./devops-central-actions/scripts/aws/docker/qry-k8s-cluster-nodes.sh ${{ inputs.aws-subscription }} ${{ inputs.aws-region}} ${{ inputs.cluster-name }}
            
       
