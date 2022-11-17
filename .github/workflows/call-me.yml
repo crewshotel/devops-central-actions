@@ -24,7 +24,7 @@ jobs:
 
   favorite-superhero-show-1-1:
     runs-on:  [self-hosted] 
-    environment: Manual-1
+    environment: Manual-1-1
     steps:
       - name: checkout-repo
         uses: actions/checkout@v3
@@ -38,7 +38,6 @@ jobs:
 
   favorite-superhero-show-1-2:
     runs-on: [self-hosted] 
-    environment: Manual-1
     steps:
       - name: checkout-repo
         uses: actions/checkout@v3
@@ -52,7 +51,7 @@ jobs:
 
   favorite-superhero-show-2-1:
     runs-on: [self-hosted] 
-    environment: Manual-2
+    environment: Manual-2-1
     steps:
       - name: checkout-repo
         uses: actions/checkout@v3
@@ -66,7 +65,6 @@ jobs:
 
   favorite-superhero-show-2-2:
     runs-on: [self-hosted] 
-    environment: Manual-2
     steps:
       - name: checkout-repo
         uses: actions/checkout@v3
