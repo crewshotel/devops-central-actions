@@ -83,3 +83,4 @@ jobs:
     with:
       favorite-superhero: ${{ inputs.favorite-superhero }}
       second-favorite-superhero: ${{ inputs.second-favorite-superhero }}
+    needs: favorite-superhero-show-2-2
