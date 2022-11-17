@@ -19,15 +19,15 @@ docker run -d -ti --name ${CLUSTER} --entrypoint /bin/bash ${DOCKER_IMAGE_FULL}
 docker ps -a
 
 # run kubectl in container to return k8s nodes
-docker exec -ti ${CLUSTER} kubectl get nodes
+docker exec ${CLUSTER} kubectl get nodes
 
 # stop and remove container
 docker container stop ${CLUSTER}
-docker rm container ${CLUSTER}
+docker container rm ${CLUSTER}
 docker ps -a
 
 # remove admin docker image
-docker image rm${DOCKER_IMAGE_FULL} -f
+docker image rm ${DOCKER_IMAGE_FULL} -f
 
 # list all docker images
 docker image ls -a
