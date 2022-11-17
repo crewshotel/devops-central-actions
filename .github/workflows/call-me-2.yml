@@ -48,7 +48,7 @@ jobs:
           echo "This is my favorite Superhero ... ${{ inputs.favorite-superhero }}"
           echo " "
           echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
-    needs: favorite-superhero-show-1-1
+    needs: favorite-superhero-show-3-1
 
   favorite-superhero-show-4-1:
     runs-on: [self-hosted] 
@@ -76,4 +76,4 @@ jobs:
           echo "This is my favorite Superhero ... ${{ inputs.favorite-superhero }}"
           echo " "
           echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
-    needs: favorite-superhero-show-2-1
+    needs: favorite-superhero-show-4-1
