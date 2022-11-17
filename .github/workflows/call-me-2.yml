@@ -22,7 +22,7 @@ jobs:
         run: |
           ls -la
 
-  favorite-superhero-show-1-1:
+  favorite-superhero-show-3-1:
     runs-on:  [self-hosted] 
     environment: Manual-1
     steps:
@@ -36,7 +36,7 @@ jobs:
           echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
     needs: repo-list-dir
 
-  favorite-superhero-show-1-2:
+  favorite-superhero-show-3-2:
     runs-on: [self-hosted] 
     environment: Manual-1
     steps:
@@ -50,7 +50,7 @@ jobs:
           echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
     needs: favorite-superhero-show-1-1
 
-  favorite-superhero-show-2-1:
+  favorite-superhero-show-4-1:
     runs-on: [self-hosted] 
     environment: Manual-2
     steps:
@@ -64,7 +64,7 @@ jobs:
           echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
     needs: repo-list-dir
 
-  favorite-superhero-show-2-2:
+  favorite-superhero-show-4-2:
     runs-on: [self-hosted] 
     environment: Manual-2
     steps:
@@ -77,9 +77,3 @@ jobs:
           echo " "
           echo "This is my second favorite Superhero  ... ${{ inputs.second-favorite-superhero }}"
     needs: favorite-superhero-show-2-1
-
-  call-me-2:
-    uses: crewshotel/devops-central-actions/.github/workflows/call-me.yml@main
-    with:
-      favorite-superhero: ${{ inputs.favorite-superhero }}
-      second-favorite-superhero: ${{ inputs.second-favorite-superhero }}
