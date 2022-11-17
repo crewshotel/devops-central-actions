@@ -42,5 +42,5 @@ jobs:
       - name: docker-pull
         run: |
            chmod +x /home/ec2-user/actions-runner/_work/devops-test-01/devops-test-01/devops-central-actions/scripts/aws/docker/admin-eks-cluster.sh
-           /home/ec2-user/actions-runner/_work/devops-test-01/devops-test-01/devops-central-actions/scripts/aws/docker/admin-eks-cluster.sh ${{ inputs.aws-region}} ${{ inputs.aws-subscription }} ${{ inputs.cluster-name }}
+           /home/ec2-user/actions-runner/_work/devops-test-01/devops-test-01/devops-central-actions/scripts/aws/docker/admin-eks-cluster.sh ${{ inputs.aws-subscription }} ${{ inputs.aws-region}} ${{ inputs.cluster-name }}
         shell: bash
