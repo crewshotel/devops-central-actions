@@ -19,7 +19,7 @@ on:
 
 jobs:
   pull-image:
-    runs-on: [self-hosted] 
+    runs-on: [self-hosted, maint-only-01] 
     steps:
       - name: output_image_pulling
         shell: bash
@@ -34,11 +34,6 @@ jobs:
           repository: crewshotel/devops-central-actions
           token: ${{ secrets.ACTIONS_PIPELINE }}
           path: devops-central-actions
-      - name: list-folder-contents
-        shell: bash
-        run: |
-          ls -la ./devops-central-actions/scripts/aws/config
-          ls -la ./devops-central-actions/scripts/aws/docker         
       - name: set-aws-credentials
         shell: bash
         if: ${{ inputs.iam-identity == 'eks_mgmt' }}
@@ -49,5 +44,19 @@ jobs:
         shell: bash
         run: |
           chmod +x ./devops-central-actions/scripts/aws/docker/pull-admin-eks-cluster.sh
-          echo "sub - region - cluster - ${{ inputs.aws-subscription }} ${{ inputs.aws-region}} ${{ inputs.cluster-name }}"
           ./devops-central-actions/scripts/aws/docker/pull-admin-eks-cluster.sh ${{ inputs.aws-subscription }} ${{ inputs.aws-region}} ${{ inputs.cluster-name }}
+  list-k8s-nodes:
+    runs-on [self-hosted, maint-only-01]
+      steps:
+      - name: output_image_starting
+        shell: bash
+        run: |
+          echo "----- docker image starting -----"
+          echo "${{ inputs.aws-subscription }}.dkr.ecr.${{ inputs.aws-region }}.amazonaws.com/admin-${{ inputs.cluster-name }}:latest"
+      - name: start-k8s-admin-image
+        shell: bash
+        run: |
+          chmod +x ./devops-central-actions/scripts/aws/docker/get-k8s-node.sh
+          ./devops-central-actions/scripts/aws/docker/get-k8s-node.sh ${{ inputs.aws-subscription }} ${{ inputs.aws-region}} ${{ inputs.cluster-name }}
+           
+      
