@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # create variables
-REGION=$1
-CLUSTER=$2
-DOCKERSUB=$3
+DOCKERSUB=$1
+REGION=$2
+CLUSTER=$3
 
 DOCKER_REGISTRY=${DOCKERSUB}.dkr.ecr.${REGION}.amazonaws.com
 
