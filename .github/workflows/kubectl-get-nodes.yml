@@ -1,5 +1,5 @@
 
-name: kubectl-get-nodes
+name: kubectl-g-n
 
 on:
   workflow_call:
@@ -18,9 +18,14 @@ on:
         type: string
 
 jobs:
-  d-pull-i-1:
+  pull-image:
     runs-on: [self-hosted] 
     steps:
+      - name: output_image_pulling
+        shell: bash
+        run: |
+          echo "----- docker image getting pulled -----"
+          echo "${{ inputs.aws-subscription }}.dkr.ecr.${{ inputs.aws-region }}.amazonaws.com/admin-${{ inputs.cluster-name }}:latest"
       - name: checkout-repo-local
         uses: actions/checkout@v3
       - name: checkout-devops-central-actions
