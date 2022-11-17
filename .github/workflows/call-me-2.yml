@@ -1,5 +1,5 @@
 
-name: call-me
+name: cm-2
 
 on:
   workflow_call:
