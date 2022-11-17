@@ -30,17 +30,18 @@ jobs:
           token: ${{ secrets.ACTIONS_PIPELINE }}
           path: devops-central-actions
       - name: list-folder-contents
+        shell: bash
         run: |
           ls -la ./devops-central-actions
       - name: set-aws-credentials
         shell: bash
+        if: ${{ inputs.iam-identity == 'eks_mgmt' }}
         run: |
-            chmod +x ./devops-central-actions/scripts/aws/config/set-id-key-eks_mgmt.sh
-            ./devops-central-actions/scripts/aws/config/set-id-key-eks_mgmt.sh ${{ secrets.AWS_ID_EKS_MGMT }} ${{ secrets.AWS_KEY_EKS_MGMT }}
-          fi
+          chmod +x ./devops-central-actions/scripts/aws/config/set-id-key-eks_mgmt.sh
+          ./devops-central-actions/scripts/aws/config/set-id-key-eks_mgmt.sh ${{ secrets.AWS_ID_EKS_MGMT }} ${{ secrets.AWS_KEY_EKS_MGMT }}
       - name: docker-pull
-        run: |
-           chmod +x /home/ec2-user/actions-runner/_work/devops-test-01/devops-test-01/devops-central-actions/scripts/aws/docker/admin-eks-cluster.sh
-           echo "sub - region - cluster - ${{ inputs.aws-subscription }} ${{ inputs.aws-region}} ${{ inputs.cluster-name }}"
-           /home/ec2-user/actions-runner/_work/devops-test-01/devops-test-01/devops-central-actions/scripts/aws/docker/admin-eks-cluster.sh ${{ inputs.aws-subscription }} ${{ inputs.aws-region}} ${{ inputs.cluster-name }}
         shell: bash
+        run: |
+          chmod +x ./devops-central-actions/scripts/aws/docker/admin-eks-cluster.sh
+          echo "sub - region - cluster - ${{ inputs.aws-subscription }} ${{ inputs.aws-region}} ${{ inputs.cluster-name }}"
+          ./devops-central-actions/scripts/aws/docker/admin-eks-cluster.sh ${{ inputs.aws-subscription }} ${{ inputs.aws-region}} ${{ inputs.cluster-name }}
