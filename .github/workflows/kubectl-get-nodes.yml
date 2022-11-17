@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: crewshotel/devops-central-actions
-          token: ${{ secrets.ACTIONS-PIPELINE }}
+          token: ${{ secrets.ACTIONS_PIPELINE }}
           path: devops-central-actions
       - name: list-folder-contents
         run: |
